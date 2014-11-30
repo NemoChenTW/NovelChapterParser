@@ -26,6 +26,9 @@ public:
 	///		Set regular expression.
 	void setRegularExp(string regularExpression);
 
+	///		Parse the novel chapter.
+	void parseChatper();
+
 
 private:
 	string 		_novelPath;		///< The novel path.

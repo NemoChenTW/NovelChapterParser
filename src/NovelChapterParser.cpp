@@ -6,6 +6,7 @@
  */
 
 #include "header/NovelChapterParser.h"
+#include <iostream>
 
 NovelChapterParser::NovelChapterParser(string filePath)
 {
@@ -56,4 +57,43 @@ void NovelChapterParser::setRegularExp(string regularExpression)
 	_regexList.push_back(regex(regularExpression));
 }
 
+/**
+ * @brief	Parse the novel chapter.
+ *
+ * Parse the novel chapter according to the setting regular expression.
+ */
+void NovelChapterParser::parseChatper()
+{
+	unsigned int maxReadSize = 1024;
+	char readBuf[maxReadSize];
 
+	while (true)
+	{
+		if(_fileStream)
+		{
+			_fileStream.getline(readBuf, maxReadSize);
+			string readString = readBuf;
+			if(readString.empty())
+				continue;
+
+			for(auto iter = _regexList.begin(); iter != _regexList.end(); iter++)
+			{
+				smatch mat;
+				regex_search(readString, mat, *iter);
+
+				string matchResult = *(mat.begin());
+				if (!matchResult.empty())
+				{
+					cout << matchResult << endl;
+				}
+			}
+
+		}
+		else
+		{
+			cout << "File closed." << endl;
+			break;
+		}
+	}
+
+}
