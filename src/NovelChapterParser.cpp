@@ -32,9 +32,9 @@ int NovelChapterParser::fileOpen()
 {
 	if(!_novelPath.empty())
 	{
-		_fileStream.open(_novelPath.c_str(), ios::in|ios::out);
+		_fileInStream.open(_novelPath.c_str(), ios::in);
 
-		if (!_fileStream)
+		if (!_fileInStream)
 			return -1;
 		else
 		{
@@ -69,9 +69,9 @@ void NovelChapterParser::parseChapter()
 
 	while (true)
 	{
-		if(_fileStream)
+		if(_fileInStream)
 		{
-			_fileStream.getline(readBuf, maxReadSize);
+			_fileInStream.getline(readBuf, maxReadSize);
 			string readString = readBuf;
 			if(readString.empty())
 				continue;
