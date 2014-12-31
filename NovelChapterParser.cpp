@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
 	novelParser.setRegularExp("第[零一二三四五六七八九十百千零壹貳參肆伍陸柒捌玖拾佰仟]+章.*");
 
 	cout << "Prepare parse chapter." << endl;
-	novelParser.parseChatper();
+	novelParser.parseChapter();
 
 //	try
 //	{

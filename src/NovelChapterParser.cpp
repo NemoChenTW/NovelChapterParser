@@ -62,7 +62,7 @@ void NovelChapterParser::setRegularExp(string regularExpression)
  *
  * Parse the novel chapter according to the setting regular expression.
  */
-void NovelChapterParser::parseChatper()
+void NovelChapterParser::parseChapter()
 {
 	unsigned int maxReadSize = 1024;
 	char readBuf[maxReadSize];
