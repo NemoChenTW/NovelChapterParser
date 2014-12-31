@@ -27,6 +27,7 @@ NovelChapterParser::~NovelChapterParser()
  * @retval	 0	File open success.
  * @retval	-1	File open fail.
  * @retval	-2	File path is empty.
+ * @retval	-3	Output file open failed.
  */
 int NovelChapterParser::fileOpen()
 {
@@ -38,6 +39,11 @@ int NovelChapterParser::fileOpen()
 			return -1;
 		else
 		{
+			string outputNovelPath = _novelPath + ".chaptered";
+			_fileOutStream.open(outputNovelPath.c_str(), ios::out);
+			if(!_fileOutStream)
+				return -3;
+
 			return 0;
 		}
 	}
@@ -53,6 +59,7 @@ int NovelChapterParser::fileOpen()
 void NovelChapterParser::fileClosed()
 {
 	_fileInStream.close();
+	_fileOutStream.close();
 }
 
 /**
@@ -82,8 +89,12 @@ void NovelChapterParser::parseChapter()
 			_fileInStream.getline(readBuf, maxReadSize);
 			string readString = readBuf;
 			if(readString.empty())
+			{
+				outputContents(readString);
 				continue;
+			}
 
+			bool isChapter = false;
 			for(auto iter = _regexList.begin(); iter != _regexList.end(); iter++)
 			{
 				smatch mat;
@@ -93,8 +104,15 @@ void NovelChapterParser::parseChapter()
 				if (!matchResult.empty())
 				{
 					cout << matchResult << endl;
+
+					string chapterString;
+					chapterString = "<chapter> " + readString;
+					outputContents(chapterString);
+					isChapter = true;
 				}
 			}
+			if( !isChapter )
+				outputContents(readString);
 
 		}
 		else
@@ -105,4 +123,12 @@ void NovelChapterParser::parseChapter()
 	}
 
 	fileClosed();
+}
+
+/**
+ * @brief	Output contents to the new file.
+ */
+void NovelChapterParser::outputContents(string contents)
+{
+	_fileOutStream << contents;
 }

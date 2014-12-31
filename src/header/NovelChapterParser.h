@@ -35,8 +35,11 @@ public:
 private:
 	string 		_novelPath;		///< The novel path.
 	fstream 	_fileInStream;	///< The file input stream.
+	fstream 	_fileOutStream;	///< The file out stream.
 
 	list<regex> _regexList;		///< Regular expression list.
+
+	void outputContents(string contents);		///< Output contents to the new file.
 
 };
 
