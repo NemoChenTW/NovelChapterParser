@@ -6,6 +6,8 @@
  */
 
 #include "header/NovelChapterParser.h"
+#include "Utility/FileUtils.h"
+
 #include <iostream>
 #include <dirent.h>
 
@@ -13,6 +15,9 @@ NovelChapterParser::NovelChapterParser()
 {
 	_tempDir = "temp";
 	_resultDir = "result";
+
+	FileUtils::createDir(_tempDir.c_str());
+	FileUtils::createDir(_resultDir.c_str());
 }
 
 NovelChapterParser::~NovelChapterParser()
