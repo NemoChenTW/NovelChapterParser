@@ -23,6 +23,9 @@ public:
 	///		Open file
 	int fileOpen();
 
+	///		Close file
+	void fileClosed();
+
 	///		Set regular expression.
 	void setRegularExp(string regularExpression);
 

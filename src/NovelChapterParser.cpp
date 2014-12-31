@@ -16,7 +16,7 @@ NovelChapterParser::NovelChapterParser(string filePath)
 
 NovelChapterParser::~NovelChapterParser()
 {
-	// TODO Auto-generated destructor stub
+	fileClosed();
 }
 
 /**
@@ -45,6 +45,14 @@ int NovelChapterParser::fileOpen()
 	{
 		return -2;
 	}
+}
+
+/**
+ * @brief	Close file.
+ */
+void NovelChapterParser::fileClosed()
+{
+	_fileInStream.close();
 }
 
 /**
@@ -96,4 +104,5 @@ void NovelChapterParser::parseChapter()
 		}
 	}
 
+	fileClosed();
 }
