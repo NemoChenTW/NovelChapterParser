@@ -13,6 +13,8 @@
 #include <regex>
 #include <list>
 
+#include "Utility/FileUtils.h"
+
 using namespace std;
 
 class NovelChapterParser {
