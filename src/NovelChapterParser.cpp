@@ -7,11 +7,12 @@
 
 #include "header/NovelChapterParser.h"
 #include <iostream>
+#include <dirent.h>
 
-NovelChapterParser::NovelChapterParser(string filePath)
+NovelChapterParser::NovelChapterParser()
 {
-	_novelPath.clear();
-	_novelPath = filePath;
+	_tempDir = "temp";
+	_resultDir = "result";
 }
 
 NovelChapterParser::~NovelChapterParser()
@@ -20,27 +21,30 @@ NovelChapterParser::~NovelChapterParser()
 }
 
 /**
- * @brief	Open file
+ * @brief	Open in and out file.
  *
- * @param 	filePath	Input file path.
+ * @param 	novelName	Input file name.
  *
  * @retval	 0	File open success.
  * @retval	-1	File open fail.
  * @retval	-2	File path is empty.
  * @retval	-3	Output file open failed.
  */
-int NovelChapterParser::fileOpen()
+int NovelChapterParser::fileOpen(string novelName)
 {
-	if(!_novelPath.empty())
+	if(!novelName.empty())
 	{
-		_fileInStream.open(_novelPath.c_str(), ios::in);
+		string inFilePath = _tempDir + "/" + novelName;
+		string outFilePath = _resultDir + "/" + novelName;
+
+		_fileInStream.open(inFilePath.c_str(), ios::in);
 
 		if (!_fileInStream)
 			return -1;
 		else
 		{
-			string outputNovelPath = _novelPath + ".chaptered";
-			_fileOutStream.open(outputNovelPath.c_str(), ios::out);
+			cout << novelName << endl;
+			_fileOutStream.open(outFilePath.c_str(), ios::out);
 			if(!_fileOutStream)
 				return -3;
 
@@ -54,7 +58,7 @@ int NovelChapterParser::fileOpen()
 }
 
 /**
- * @brief	Close file.
+ * @brief	Close in and out files.
  */
 void NovelChapterParser::fileClosed()
 {
@@ -79,6 +83,65 @@ void NovelChapterParser::setRegularExp(string regularExpression)
  */
 void NovelChapterParser::parseChapter()
 {
+	analysisFile();
+	if(_inputNovel.size() == 0)
+	{
+		cout << "No input file.";
+		exit(0);
+	}
+
+	for(auto iter = _inputNovel.begin(); iter != _inputNovel.end(); iter++)
+	{
+		int err = fileOpen(*iter);
+
+		if(err != 0)
+		{
+			cout << "File open Error(" << err << ")." << endl;
+			fileClosed();
+			continue;
+		}
+
+		parseContents();
+		fileClosed();
+	}
+
+}
+
+/**
+ * @brief	Analysis the temp folder.
+ *
+ * Analysis the temp folder, and save the file name.
+ */
+void NovelChapterParser::analysisFile()
+{
+	struct dirent **namelist;
+	int fileCount = scandir(_tempDir.c_str(), &namelist, 0, alphasort);
+	if(fileCount < 0)
+	{
+		perror("scandir");
+	}
+	else
+	{
+		for(int i = 0; i < fileCount; i++)
+		{
+			string fileName = namelist[i]->d_name;
+			if(fileName == "." || fileName == "..")
+				continue;
+			else if(fileName[fileName.length()-1] == '~')
+				continue;
+			else
+				_inputNovel.push_back(namelist[i]->d_name);
+		}
+	}
+	free(namelist);
+}
+
+/**
+ * @brief	Parse the novel contents.
+ */
+void NovelChapterParser::parseContents()
+{
+
 	unsigned int maxReadSize = 1024;
 	char readBuf[maxReadSize];
 
@@ -117,12 +180,10 @@ void NovelChapterParser::parseChapter()
 		}
 		else
 		{
-			cout << "File closed." << endl;
+			cout << "File closed." << endl << endl;
 			break;
 		}
 	}
-
-	fileClosed();
 }
 
 /**

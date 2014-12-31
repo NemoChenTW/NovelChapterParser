@@ -17,29 +17,12 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	cout << "Start" << endl;
-
-	if(argc != 2)
-	{
-		cout << "Wrong argument." << endl;
-		exit(-1);
-	}
-	string filePath = argv[1];
-
-	filePath = "劍噬虛空乾坤逆亂.txt";
-	NovelChapterParser novelParser(filePath);
-	int err = novelParser.fileOpen();
-	if(err != 0)
-	{
-		cout << "File open error (" << err << ")" << endl;
-		exit(-1);
-	}
-
-	//TODO Load from file.
+	NovelChapterParser novelParser;
+	//TODO Load RegExp from file.
+	novelParser.setRegularExp("楔.*子.*");
 	novelParser.setRegularExp("第[0-9]+章.*");
 	novelParser.setRegularExp("第[零一二三四五六七八九十百千零壹貳參肆伍陸柒捌玖拾佰仟]+章.*");
 
-	cout << "Prepare parse chapter." << endl;
 	novelParser.parseChapter();
 
 //	try

@@ -12,6 +12,7 @@
 #include <fstream>
 #include <regex>
 #include <list>
+#include <vector>
 
 #include "Utility/FileUtils.h"
 
@@ -19,14 +20,8 @@ using namespace std;
 
 class NovelChapterParser {
 public:
-	NovelChapterParser(string filePath);
+	NovelChapterParser();
 	virtual ~NovelChapterParser();
-
-	///		Open file
-	int fileOpen();
-
-	///		Close file
-	void fileClosed();
 
 	///		Set regular expression.
 	void setRegularExp(string regularExpression);
@@ -35,11 +30,27 @@ public:
 	void parseChapter();
 
 private:
-	string 		_novelPath;		///< The novel path.
-	fstream 	_fileInStream;	///< The file input stream.
-	fstream 	_fileOutStream;	///< The file out stream.
+	fstream 		_fileInStream;		///< The file input stream.
+	fstream 		_fileOutStream;		///< The file out stream.
 
-	list<regex> _regexList;		///< Regular expression list.
+	string			_tempDir;			///< The temp folder directory path.
+	string			_resultDir;			///< The result folder directory path.
+
+	list<regex> 	_regexList;			///< Regular expression list.
+	vector<string> 	_inputNovel;		///< The input file name.
+
+
+	///		Open in and out file.
+	int fileOpen(string novelName);
+
+	///		Close in and out files.
+	void fileClosed();
+
+	///		Analysis the temp folder.
+	void analysisFile();
+
+	///		Parse the novel contents.
+	void parseContents();
 
 	void outputContents(string contents);		///< Output contents to the new file.
 
