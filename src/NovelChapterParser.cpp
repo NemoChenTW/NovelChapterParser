@@ -91,7 +91,7 @@ void NovelChapterParser::parseChapter()
 	analysisFile();
 	if(_inputNovel.size() == 0)
 	{
-		cout << "No input file.";
+		cout << "No input file." << endl;
 		exit(0);
 	}
 
