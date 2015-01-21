@@ -13,11 +13,7 @@
 
 NovelChapterParser::NovelChapterParser()
 {
-	_tempDir = "temp";
-	_resultDir = "result";
-
-	FileUtils::createDir(_tempDir.c_str());
-	FileUtils::createDir(_resultDir.c_str());
+	checkWorkingDirectory();
 
 	setDefaultRegExp();
 }
@@ -91,6 +87,20 @@ void NovelChapterParser::fileClosed()
 void NovelChapterParser::setRegularExp(string regularExpression)
 {
 	_regexList.push_back(regex(regularExpression));
+}
+
+/**
+ * @brief	Check the work directory.
+ *
+ * Create working directories if they are not exist.
+ */
+void NovelChapterParser::checkWorkingDirectory()
+{
+	_tempDir = "temp";
+	_resultDir = "result";
+
+	FileUtils::createDir(_tempDir.c_str());
+	FileUtils::createDir(_resultDir.c_str());
 }
 
 /**

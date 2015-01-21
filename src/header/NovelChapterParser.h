@@ -40,6 +40,9 @@ private:
 	///		Set regular expression.
 	void setRegularExp(string regularExpression);
 
+	///		Check the work directory.
+	void checkWorkingDirectory();
+
 	///		Open in and out file.
 	int fileOpen(string novelName);
 
