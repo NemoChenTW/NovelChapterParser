@@ -18,11 +18,23 @@ NovelChapterParser::NovelChapterParser()
 
 	FileUtils::createDir(_tempDir.c_str());
 	FileUtils::createDir(_resultDir.c_str());
+
+	setDefaultRegExp();
 }
 
 NovelChapterParser::~NovelChapterParser()
 {
 	fileClosed();
+}
+
+/**
+ * @brief	Set default regular expression.
+ */
+void NovelChapterParser::setDefaultRegExp()
+{
+	setRegularExp("第[0-9]+章.*");
+	setRegularExp("第[零一二三四五六七八九十百千零壹貳參肆伍陸柒捌玖拾佰仟]+章.*");
+	setRegularExp("楔.*子.*");
 }
 
 /**

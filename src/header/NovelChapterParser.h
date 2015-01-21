@@ -37,6 +37,8 @@ private:
 	list<regex> 	_regexList;			///< Regular expression list.
 	vector<string> 	_inputNovel;		///< The input file name.
 
+	///		Set default regular expression.
+	void setDefaultRegExp();
 
 	///		Open in and out file.
 	int fileOpen(string novelName);
