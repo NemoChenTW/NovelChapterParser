@@ -21,9 +21,6 @@ public:
 	NovelChapterParser();
 	virtual ~NovelChapterParser();
 
-	///		Set regular expression.
-	void setRegularExp(string regularExpression);
-
 	///		Parse the novel chapter.
 	void parseChapter();
 
@@ -39,6 +36,9 @@ private:
 
 	///		Set default regular expression.
 	void setDefaultRegExp();
+
+	///		Set regular expression.
+	void setRegularExp(string regularExpression);
 
 	///		Open in and out file.
 	int fileOpen(string novelName);
