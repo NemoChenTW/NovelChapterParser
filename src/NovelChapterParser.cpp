@@ -177,6 +177,7 @@ void NovelChapterParser::parseContents()
 					chapterString = "<chapter> " + readString;
 					outputContents(chapterString);
 					isChapter = true;
+					break;
 				}
 			}
 			if( !isChapter )
