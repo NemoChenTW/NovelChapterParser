@@ -147,7 +147,7 @@ void NovelChapterParser::analysisFile()
 void NovelChapterParser::parseContents()
 {
 
-	unsigned int maxReadSize = 1024;
+	unsigned int maxReadSize = 204800;
 	char readBuf[maxReadSize];
 
 	while (true)
