@@ -19,9 +19,9 @@ int main(int argc, char* argv[])
 {
 	NovelChapterParser novelParser;
 	//TODO Load RegExp from file.
-	novelParser.setRegularExp("楔.*子.*");
 	novelParser.setRegularExp("第[0-9]+章.*");
 	novelParser.setRegularExp("第[零一二三四五六七八九十百千零壹貳參肆伍陸柒捌玖拾佰仟]+章.*");
+	novelParser.setRegularExp("楔.*子.*");
 
 	novelParser.parseChapter();
 
