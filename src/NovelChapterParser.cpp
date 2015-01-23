@@ -28,9 +28,9 @@ NovelChapterParser::~NovelChapterParser()
  */
 void NovelChapterParser::setDefaultRegExp()
 {
-	setRegularExp("第[0-9]+章.*");
-	setRegularExp("第[零一二三四五六七八九十百千零壹貳參肆伍陸柒捌玖拾佰仟]+章.*");
-	setRegularExp("楔.*子.*");
+	setRegularExp("第[0-9]+章.{0,15}\\s+");
+	setRegularExp("第[零一二三四五六七八九十百千零壹貳參肆伍陸柒捌玖拾佰仟]+章.{0,15}\\s+");
+	setRegularExp("楔.{0,5}子.{0,15}\\s+");
 }
 
 /**
