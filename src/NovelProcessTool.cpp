@@ -46,7 +46,7 @@ void NovelProcessTool::checkWorkingDirectory()
  * @retval	-2	File path is empty.
  * @retval	-3	Output file open failed.
  */
-int NovelProcessTool::fileOpen(string novelName)
+int NovelProcessTool::fileOpen(string novelName, bool sameAsInputName, string oNovelName)
 {
 	if(!novelName.empty())
 	{
@@ -81,7 +81,6 @@ void NovelProcessTool::fileClosed()
 	_fileInStream.close();
 	_fileOutStream.close();
 }
-
 
 /**
  * @brief	Analysis the temp folder.
