@@ -16,7 +16,7 @@
 
 using namespace std;
 
-class NovelChapterParser {
+class NovelChapterParser: public NovelProcessTool {
 public:
 	NovelChapterParser();
 	virtual ~NovelChapterParser();
