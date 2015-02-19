@@ -51,7 +51,16 @@ int NovelProcessTool::fileOpen(string novelName, bool sameAsInputName, string oN
 	if(!novelName.empty())
 	{
 		string inFilePath = _tempDir + "/" + novelName;
-		string outFilePath = _resultDir + "/" + novelName;
+		string outFilePath;
+		if(sameAsInputName)
+		{
+			outFilePath = _resultDir + "/" + novelName;
+		}
+		else
+		{
+			outFilePath = _resultDir + "/" + oNovelName;
+		}
+
 
 		_fileInStream.open(inFilePath.c_str(), ios::in);
 
