@@ -38,8 +38,6 @@ private:
 	///		Parse the novel contents.
 	void parseContents();
 
-	void outputContents(string contents);		///< Output contents to the new file.
-
 };
 
 #endif /* NOVELCHAPTERPARSER_H_ */

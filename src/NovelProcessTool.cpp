@@ -132,3 +132,11 @@ void NovelProcessTool::analysisFile()
 	}
 	free(namelist);
 }
+
+/**
+ * @brief	Output contents to the new file.
+ */
+void NovelProcessTool::outputContents(string contents)
+{
+	_fileOutStream << contents;
+}

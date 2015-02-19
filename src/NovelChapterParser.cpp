@@ -124,10 +124,3 @@ void NovelChapterParser::parseContents()
 	}
 }
 
-/**
- * @brief	Output contents to the new file.
- */
-void NovelChapterParser::outputContents(string contents)
-{
-	_fileOutStream << contents;
-}

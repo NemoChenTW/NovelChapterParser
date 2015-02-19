@@ -33,6 +33,9 @@ protected:
 	///		Analysis the temp folder.
 	void analysisFile();
 
+	///		Output contents to the new file.
+	void outputContents(string contents);
+
 	///		Novel tool action, implement in sub class.
 	virtual void parseContents() = 0;
 
