@@ -28,7 +28,7 @@ protected:
 	int fileOpen(string novelName, bool sameAsInputName = true, string oNovelName = "");
 
 	///		Close in and out files.
-	void fileClosed();
+	void fileClosed(int closeOption = 2);
 
 	///		Analysis the temp folder.
 	void analysisFile();

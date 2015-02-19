@@ -84,11 +84,24 @@ int NovelProcessTool::fileOpen(string novelName, bool sameAsInputName, string oN
 
 /**
  * @brief	Close in and out files.
+ *
+ * @param	closeOption		0: close output file, 1: close input file, 2: close both files.
  */
-void NovelProcessTool::fileClosed()
+void NovelProcessTool::fileClosed(int closeOption)
 {
-	_fileInStream.close();
-	_fileOutStream.close();
+	if(closeOption == 0)
+		_fileOutStream.close();
+	else if(closeOption == 1)
+		_fileInStream.close();
+	else if(closeOption == 2)
+	{
+		_fileInStream.close();
+		_fileOutStream.close();
+	}
+	else
+	{
+		fileClosed(2);
+	}
 }
 
 /**
