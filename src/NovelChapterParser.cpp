@@ -118,7 +118,7 @@ void NovelChapterParser::parseContents()
 		}
 		else
 		{
-			cout << "File closed." << endl << endl;
+			cout << "File end." << endl << endl;
 			break;
 		}
 	}
