@@ -33,6 +33,9 @@ protected:
 	///		Analysis the temp folder.
 	void analysisFile();
 
+	///		Novel tool action, implement in sub class.
+	virtual void parseContents() = 0;
+
 	fstream 		_fileInStream;		///< The file input stream.
 	fstream 		_fileOutStream;		///< The file out stream.
 
