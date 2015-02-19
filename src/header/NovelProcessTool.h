@@ -25,7 +25,8 @@ protected:
 	void checkWorkingDirectory();
 
 	///		Open in and out file.
-	int fileOpen(string novelName, bool sameAsInputName = true, string oNovelName = "");
+	int fileOpen(string novelName, bool sameAsInputName = true,
+			string oNovelName = "", bool append = false);
 
 	///		Close in and out files.
 	void fileClosed(int closeOption = 2);

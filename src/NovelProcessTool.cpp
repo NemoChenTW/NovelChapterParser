@@ -46,7 +46,8 @@ void NovelProcessTool::checkWorkingDirectory()
  * @retval	-2	File path is empty.
  * @retval	-3	Output file open failed.
  */
-int NovelProcessTool::fileOpen(string novelName, bool sameAsInputName, string oNovelName)
+int NovelProcessTool::fileOpen(string novelName,
+		bool sameAsInputName, string oNovelName, bool append)
 {
 	if(!novelName.empty())
 	{
@@ -69,7 +70,16 @@ int NovelProcessTool::fileOpen(string novelName, bool sameAsInputName, string oN
 		else
 		{
 			cout << novelName << endl;
-			_fileOutStream.open(outFilePath.c_str(), ios::out);
+
+			if(append)
+			{
+				_fileOutStream.open(outFilePath.c_str(), ios::out | ios::app);
+			}
+			else
+			{
+				_fileOutStream.open(outFilePath.c_str(), ios::out);
+			}
+
 			if(!_fileOutStream)
 				return -3;
 
