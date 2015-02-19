@@ -17,9 +17,11 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	NovelChapterParser novelParser;
+//	NovelChapterParser novelParser;
+//	novelParser.parseChapter();
 
-	novelParser.parseChapter();
+	NovelChapterCombine novelCombiner;
+	novelCombiner.combineChapter();
 
 //	try
 //	{

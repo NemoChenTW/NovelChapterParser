@@ -9,6 +9,7 @@
 #define LIBNOVELCHAPTERPARSER_H_
 
 #include "header/NovelChapterParser.h"
+#include "header/NovelChapterCombine.h"
 
 
 
